@@ -11,9 +11,9 @@ const colors = {
    }
 }
 
-app.use(bodyParser.urlencoded({ extended: false })); 
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static('client')); // serve static files - give any directory in project 
+app.use(express.static('client')); // serve static files - give any directory in project
 
 app.post('/sendGuesses', (req, res) => {
    const { connor, collin } = req.body; // object destructuring

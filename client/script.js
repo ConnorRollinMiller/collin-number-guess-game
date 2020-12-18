@@ -3,13 +3,19 @@ $( document ).ready(() => {
    // keeps track of rounds
    let roundNum = 0;
 
-   $("#roundNum").html(`Round: ${roundNum}`);
+   $("#round").html(`Round: ${roundNum}`);
 
    $("#form").submit((e) => {
       e.preventDefault();
 
       const connorGuess = $('#connorInput').val();
       const collinGuess = $('#collinInput').val();
+
+      // Check if either inputs are empty
+      if (!connorGuess || !collinGuess) {
+         $("#displayMsg").html(`Bruh.. Wtf you doing? Can't have empty inputs`);
+         return;
+      }
 
       $.ajax({
          type: 'POST',
@@ -32,8 +38,8 @@ $( document ).ready(() => {
                $("#displayMsg").html(`Neither of you guessed the random number of ${res.randomNum}`);
             }
 
-            round += 1; // Increment round #
-            $("#roundNum").html(`Round: ${roundNum}`); // print round number to DOM
+            roundNum += 1; // Increment round #
+            $("#round").html(`Round: ${roundNum}`); // print round number to DOM
 
             // Reset input values
             $('#connorInput').val("");
