@@ -18,9 +18,9 @@ app.use(express.static('client')); // serve static files - give any directory in
 app.post('/sendGuesses', (req, res) => {
    const { connor, collin } = req.body; // object destructuring
 
-   // const randomNum = Math.floor(Math.random() * 26) // random number 0-25/
+   const randomNum = Math.floor(Math.random() * 26) // random number 0-25
 
-   colors.main('RANDOM NUM:',randomNum)
+   colors.main('RANDOM NUM:', randomNum)
    colors.main(`Connor: ${connor} - Collin: ${collin}`);
 
    res.json({ collin: req.body.connor == randomNum, connor: req.body.collin == randomNum, randomNum: randomNum });
