@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Random Number Game</title>
+   </head>
+   <body class='py-4'>
+      <main class="container">
+         <h2 class="text-center" id="round"></h2>
+         <form class="col-6 mx-auto" id="form">
+            <div class="form-group">
+               <label class="form-label">Connor's Guess</label>
+               <input class='form-control' id="connorInput" type="number" />
+               <small id="connorGuesses" class="form-text"></small>
+               <small id="connorHL" class="form-text"></small>
+            </div>
+            <div class="form-group">
+               <label class="form-label">Collin's Guess</label>
+               <input class='form-control' id="collinInput" type="number" />
+               <small id="collinGuesses" class="form-text"></small>
+               <small id="collinHL" class="form-text"></small>
+            </div>
+            <button class="btn btn-primary btn-block" id="button" type="submit">Submit</button>
+         </form>
+         <div class="alert">
+            <p class="text-center" id="displayMsg"></p>
+         </div>
+      </main>
+   </body>
+
+</html>

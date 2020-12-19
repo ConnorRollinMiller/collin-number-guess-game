@@ -1,6 +1,7 @@
-const express = require('express');
-const chalk = require('chalk');
-const bodyParser = require('body-parser');
+const express = require("express");
+const chalk = require("chalk");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 
 const PORT = process.env.PORT || 8081;
 const app = express();
@@ -8,22 +9,40 @@ const app = express();
 const colors = {
    main: (text) => {
       console.log(chalk.cyan(text));
-   }
-}
+   },
+};
+
+let randomNum = Math.floor(Math.random() * 26); // random number 0-25
+let guesses = {
+   connor: [],
+   collin: [],
+};
 
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors({ origin: "*" }));
 
-app.use(express.static('client')); // serve static files - give any directory in project
-
-app.post('/sendGuesses', (req, res) => {
+app.post("/sendGuesses", (req, res) => {
    const { connor, collin } = req.body; // object destructuring
 
-   const randomNum = Math.floor(Math.random() * 26) // random number 0-25
-
-   colors.main('RANDOM NUM:', randomNum)
+   colors.main(`RANDOM NUM: ${randomNum}`);
    colors.main(`Connor: ${connor} - Collin: ${collin}`);
 
-   res.json({ collin: req.body.connor == randomNum, connor: req.body.collin == randomNum, randomNum: randomNum });
+   guesses.connor.push(connor);
+   guesses.collin.push(collin);
+
+   res.json({ randomNum: randomNum, guesses });
+});
+
+app.get("/reset", (req, res) => {
+   colors.main(`\nRESETTING GAME\n`);
+
+   randomNum = Math.floor(Math.random() * 26);
+   guesses = {
+      connor: [],
+      collin: [],
+   };
+
+   res.json({ randomNum: randomNum, guesses });
 });
 
 app.listen(PORT, () => {
