@@ -1,6 +1,4 @@
-## Setup & Run Deveopment
-
----
+## Setup & Run Development
 
 -  May need to delete `yarn.lock` file because I'm using `yarn` and not `npm` for package manager
 -  Run a `npm install`
